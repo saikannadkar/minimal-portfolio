@@ -10,7 +10,7 @@
           "value": "www.saikannadkar.codes"
         }
       ],
-      "destination": "https://saikannadkar.codes/:path*",
+      "destination": "https://saikannadkar.codes/$1",
       "permanent": true
     }
   ],
