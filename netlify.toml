@@ -1,0 +1,56 @@
+# ── Build settings ────────────────────────────────────────────────────────────
+[build]
+  publish = "."       # root of repo is the site; change if you nest files
+
+# ── Redirects ─────────────────────────────────────────────────────────────────
+# Force www → apex (canonical URL consistency for SEO)
+[[redirects]]
+  from   = "https://www.saikannadkar.codes/*"
+  to     = "https://saikannadkar.codes/:splat"
+  status = 301
+  force  = true
+
+# HTTP → HTTPS handled automatically by Netlify; no rule needed
+
+# ── Headers ───────────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Tells Google this is the real URL — reinforces canonical tag
+    X-Robots-Tag              = "index, follow"
+
+    # Security headers Google factors into trust signals
+    X-Frame-Options           = "DENY"
+    X-Content-Type-Options    = "nosniff"
+    Referrer-Policy           = "strict-origin-when-cross-origin"
+    Permissions-Policy        = "camera=(), microphone=(), geolocation=()"
+
+    # Performance: cache HTML for 1 hour, revalidate
+    Cache-Control             = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type  = "application/xml"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Cache fonts and static assets aggressively
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

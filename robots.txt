@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — allow indexing for GEO visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://saikannadkar.codes/sitemap.xml
