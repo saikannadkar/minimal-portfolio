@@ -128,6 +128,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
  
+<script>
+  (function() {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  })();
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
  
@@ -143,7 +149,7 @@
   }
  
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
       --bg: #111110;
       --text: #e8e6df;
       --muted: #8a8a80;
@@ -153,6 +159,28 @@
       --divider: #2a2a26;
       --mono: #a8a89e;
     }
+  }
+
+  [data-theme="dark"] {
+    --bg: #111110;
+    --text: #e8e6df;
+    --muted: #8a8a80;
+    --accent: #d4d0c4;
+    --link: #e8e6df;
+    --link-hover: #7ec99a;
+    --divider: #2a2a26;
+    --mono: #a8a89e;
+  }
+
+  [data-theme="light"] {
+    --bg: #faf9f7;
+    --text: #1a1a18;
+    --muted: #6b6b63;
+    --accent: #2a2a26;
+    --link: #1a1a18;
+    --link-hover: #3d6b4f;
+    --divider: #e8e6df;
+    --mono: #4a4a42;
   }
  
   html { font-size: 16px; }
@@ -260,6 +288,27 @@
     margin-left: auto;
   }
  
+  .theme-toggle {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+    z-index: 100;
+  }
+  .theme-toggle:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
   @media (max-width: 480px) {
     main { padding: 3rem 0 4rem; }
     .now { margin-left: 0; }
@@ -303,6 +352,7 @@
   </p>
  
   <div class="footer">
+    <a href="/blog">Blog</a>
     <a href="https://x.com/saikannadkar_" target="_blank" rel="noopener">X / Twitter</a>
     <a href="https://github.com/saikannadkar" target="_blank" rel="noopener">GitHub</a>
     <a href="https://linkedin.com/in/saikannadkar" target="_blank" rel="noopener">LinkedIn</a>
@@ -310,5 +360,7 @@
     <span class="now">Nashik, India</span>
   </div>
 </main>
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+<script src="/theme.js"></script>
 </body>
 </html>

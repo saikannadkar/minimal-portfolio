@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E4DYZSY7YY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E4DYZSY7YY');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══ PRIMARY SEO ═══════════════════════════════════════════════════════ -->
+<title>Blog — Sai Kannadkar</title>
+<meta name="description" content="Writing on software engineering, AI/ML, drone systems, and building in public. By Sai Kannadkar.">
+<meta name="author" content="Sai Kannadkar">
+<link rel="canonical" href="https://saikannadkar.codes/blog">
+
+<!-- ═══ OPEN GRAPH ════════════════════════════════════════════════════════ -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saikannadkar.codes/blog">
+<meta property="og:title" content="Blog — Sai Kannadkar">
+<meta property="og:description" content="Writing on software engineering, AI/ML, drone systems, and building in public.">
+<meta property="og:image" content="https://saikannadkar.codes/og.png">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Sai Kannadkar">
+
+<!-- ═══ TWITTER / X CARD ══════════════════════════════════════════════════ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@saikannadkar_">
+<meta name="twitter:title" content="Blog — Sai Kannadkar">
+<meta name="twitter:description" content="Writing on software engineering, AI/ML, drone systems, and building in public.">
+<meta name="twitter:image" content="https://saikannadkar.codes/og.png">
+
+<!-- ═══ CRAWL DIRECTIVES ══════════════════════════════════════════════════ -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<!-- ═══ BLOG INDEX SCHEMA ═════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "url": "https://saikannadkar.codes/blog",
+  "name": "Blog — Sai Kannadkar",
+  "description": "Writing on software engineering, AI/ML, drone systems, and building in public.",
+  "author": {
+    "@type": "Person",
+    "name": "Sai Kannadkar",
+    "url": "https://saikannadkar.codes"
+  }
+}
+</script>
+
+<!-- ═══ FAVICONS ══════════════════════════════════════════════════════════ -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#6b6b63">
+
+<!-- ═══ FONTS ══════════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- ═══ ANTI-FLASH ════════════════════════════════════════════════════════ -->
+<script>
+  (function() {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  })();
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf9f7;
+    --text: #1a1a18;
+    --muted: #6b6b63;
+    --accent: #2a2a26;
+    --link: #1a1a18;
+    --link-hover: #3d6b4f;
+    --divider: #e8e6df;
+    --mono: #4a4a42;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --bg: #111110;
+      --text: #e8e6df;
+      --muted: #8a8a80;
+      --accent: #d4d0c4;
+      --link: #e8e6df;
+      --link-hover: #7ec99a;
+      --divider: #2a2a26;
+      --mono: #a8a89e;
+    }
+  }
+
+  [data-theme="dark"] {
+    --bg: #111110;
+    --text: #e8e6df;
+    --muted: #8a8a80;
+    --accent: #d4d0c4;
+    --link: #e8e6df;
+    --link-hover: #7ec99a;
+    --divider: #2a2a26;
+    --mono: #a8a89e;
+  }
+
+  [data-theme="light"] {
+    --bg: #faf9f7;
+    --text: #1a1a18;
+    --muted: #6b6b63;
+    --accent: #2a2a26;
+    --link: #1a1a18;
+    --link-hover: #3d6b4f;
+    --divider: #e8e6df;
+    --mono: #4a4a42;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    padding: 0 1.5rem;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 2.5rem 0 6rem;
+  }
+
+  /* ─── Nav ───────────────────────────────────────────────────────────── */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-name:hover {
+    color: var(--link-hover);
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .theme-toggle:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  /* ─── Back link ─────────────────────────────────────────────────────── */
+  .back-link {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover {
+    color: var(--link-hover);
+  }
+
+  /* ─── Page header ───────────────────────────────────────────────────── */
+  .page-title {
+    font-family: 'Lora', serif;
+    font-size: 2.75rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-desc {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+
+  /* ─── Post list ─────────────────────────────────────────────────────── */
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .post-item {
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--divider);
+    opacity: 1;
+  }
+
+  .post-item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .post-date {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .post-title {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .post-title a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .post-title a:hover {
+    color: var(--link-hover);
+  }
+
+  /* ─── Divider opacity ───────────────────────────────────────────────── */
+  .post-item + .post-item {
+    border-color: color-mix(in srgb, var(--divider) 60%, transparent);
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 1.5rem 0 4rem; }
+    .page-title { font-size: 2.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a href="/" class="nav-name">Sai Kannadkar</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+  </nav>
+
+  <a href="/" class="back-link">← back home</a>
+
+  <h1 class="page-title">Blog</h1>
+  <p class="page-desc">Thinking out loud about engineering, AI, drones, and building in public.</p>
+
+  <ul class="post-list">
+    <li class="post-item">
+      <span class="post-date">June 10, 2025</span>
+      <h2 class="post-title"><a href="/blog/gps-denied-drone">Why I'm Building a GPS-Denied Drone for ISRO</a></h2>
+    </li>
+    <li class="post-item">
+      <span class="post-date">May 22, 2025</span>
+      <h2 class="post-title"><a href="#">Running a 500-Person Hackathon on Campus Wi-Fi</a></h2>
+    </li>
+    <li class="post-item">
+      <span class="post-date">April 14, 2025</span>
+      <h2 class="post-title"><a href="#">SLAM Without a GPS: What Actually Worked</a></h2>
+    </li>
+    <li class="post-item">
+      <span class="post-date">March 3, 2025</span>
+      <h2 class="post-title"><a href="#">From FastAPI to Production: Lessons From a University Dashboard</a></h2>
+    </li>
+    <li class="post-item">
+      <span class="post-date">January 19, 2025</span>
+      <h2 class="post-title"><a href="#">Learning in Public — Why I Write About Everything I Build</a></h2>
+    </li>
+  </ul>
+</div>
+<script src="/theme.js"></script>
+</body>
+</html>
