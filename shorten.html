@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkForge</title>
+<style>
+  :root {
+    --ink: #eae6dd;
+    --ink-dim: #8b8577;
+    --bg: #14130f;
+    --bg-raised: #1c1a15;
+    --line: #2c2920;
+    --forge: #d97706;
+    --forge-dim: #7a4a10;
+    --ok: #7cae7a;
+    --err: #c96a4f;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+    color: var(--ink);
+    font-family: var(--mono);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 8vh 20px;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .eyebrow {
+    color: var(--forge);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    margin: 0 0 4px;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .sub {
+    color: var(--ink-dim);
+    font-size: 13px;
+    margin: 0 0 36px;
+  }
+
+  form {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    padding: 28px;
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+  }
+
+  .field { margin-bottom: 20px; }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .row .optional {
+    font-size: 10px;
+    color: var(--forge-dim);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  input[type="text"], input[type="url"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 14px;
+    padding: 11px 12px;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  input:focus {
+    border-color: var(--forge);
+  }
+
+  .code-input-wrap {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .code-prefix {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-right: none;
+    color: var(--ink-dim);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .code-input-wrap input {
+    border-left: none;
+  }
+
+  button {
+    width: 100%;
+    background: var(--forge);
+    color: #14130f;
+    border: none;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    padding: 13px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  button:hover:not(:disabled) { background: #f0930f; }
+  button:disabled { background: var(--forge-dim); cursor: not-allowed; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    padding: 18px 20px;
+    display: none;
+  }
+
+  .result.show { display: block; }
+  .result.error { border-color: var(--err); }
+
+  .result-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+  }
+
+  .result.error .result-label { color: var(--err); }
+
+  .result-url {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--ok);
+    word-break: break-all;
+  }
+
+  .result.error .result-url { color: var(--err); }
+
+  .copy-btn {
+    flex-shrink: 0;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 10px;
+    width: auto;
+    cursor: pointer;
+  }
+
+  .copy-btn:hover { color: var(--ink); border-color: var(--ink-dim); background: transparent; }
+
+  footer {
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <p class="eyebrow">// LinkForge</p>
+  <h1>Forge a short link</h1>
+  <p class="sub">Paste a long URL. Pick your own code, or let one get generated.</p>
+
+  <form id="linkForm">
+    <div class="field">
+      <label for="originalUrl">Destination URL</label>
+      <input type="url" id="originalUrl" placeholder="https://example.com/a/very/long/path" required>
+    </div>
+
+    <div class="field">
+      <div class="row">
+        <label for="customCode" style="margin-bottom:0;">Custom short code</label>
+        <span class="optional">optional</span>
+      </div>
+      <div class="code-input-wrap">
+        <span class="code-prefix" id="codePrefix">yourdomain.com/</span>
+        <input type="text" id="customCode" placeholder="github" maxlength="20">
+      </div>
+    </div>
+
+    <button type="submit" id="submitBtn">Create short link</button>
+  </form>
+
+  <div class="result" id="result">
+    <div class="result-label" id="resultLabel">Your link</div>
+    <div class="result-url">
+      <span id="resultText"></span>
+      <button class="copy-btn" id="copyBtn" type="button">copy</button>
+    </div>
+  </div>
+
+  <footer>Set API_ENDPOINT in the script before deploying.</footer>
+</div>
+
+<script>
+  // ---- CONFIGURE THIS ----
+  const API_ENDPOINT = "https://links.saikannadkar.tech/links"; // your custom domain + /links route
+  const DISPLAY_DOMAIN = ""links.saikannadkar.tech/";
+  // -------------------------
+
+  document.getElementById("codePrefix").textContent = DISPLAY_DOMAIN;
+
+  const form = document.getElementById("linkForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const result = document.getElementById("result");
+  const resultLabel = document.getElementById("resultLabel");
+  const resultText = document.getElementById("resultText");
+  const copyBtn = document.getElementById("copyBtn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const originalUrl = document.getElementById("originalUrl").value.trim();
+    const customCode = document.getElementById("customCode").value.trim();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Forging…";
+    result.classList.remove("show", "error");
+
+    try {
+      const res = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ originalUrl, customCode: customCode || undefined })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      resultLabel.textContent = "Your link";
+      resultText.textContent = data.shortUrl;
+      result.classList.add("show");
+      form.reset();
+
+    } catch (err) {
+      resultLabel.textContent = "Error";
+      resultText.textContent = err.message;
+      result.classList.add("show", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Create short link";
+    }
+  });
+
+  copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(resultText.textContent);
+    copyBtn.textContent = "copied";
+    setTimeout(() => (copyBtn.textContent = "copy"), 1500);
+  });
+</script>
+
+</body>
+</html>
